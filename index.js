@@ -8,12 +8,15 @@ const root=document.documentElement;
 const theme=document.querySelector(".Theme")
 const theme_color=document.querySelector(".theme-color")
 const colors=document.querySelectorAll(".theme-color li")
+const typingText = document.querySelector(".typing-text");
 
 const MediaQuery = (media) => {
     if (media.matches) {
         document.querySelector(".logo").innerHTML = "JS";
+        navbar.style.display="none"
     } else {
         document.querySelector(".logo").innerHTML = "Jayasurya";
+        navbar.style.display="flex";
     }
 };
 
@@ -69,3 +72,43 @@ for(let i=0;i<3;i++){
             root.style.setProperty("--primary-color","#2020ec");
     });
 }
+
+const roles = ["Full stack developer", "Frontend developer", "Backend developer"];
+
+
+function changeRole(roles) {
+    let roleIndex = 0;
+    let charIndex = 0;
+
+    function type() {
+        if (roleIndex < roles.length) {
+            if (charIndex < roles[roleIndex].length) {
+                typingText.textContent += roles[roleIndex][charIndex];
+                charIndex++;
+                setTimeout(type, 150); 
+            } else {
+                setTimeout(() => {
+                    erase();
+                }, 1000);
+            }
+        } else {
+            roleIndex = 0;
+            setTimeout(type, 1000);
+        }
+    }
+
+    function erase() {
+        if (charIndex > 0) {
+            typingText.textContent = typingText.textContent.slice(0, -1);
+            charIndex--;
+            setTimeout(erase, 100);
+        } else {
+            roleIndex++;
+            setTimeout(type, 500);
+        }
+    }
+    type();
+}
+
+
+changeRole(roles);
