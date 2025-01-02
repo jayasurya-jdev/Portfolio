@@ -73,17 +73,17 @@ for(let i=0;i<3;i++){
     });
 }
 
-const roles = ["Full stack developer", "Frontend developer", "Backend developer"];
+const roles ="Frontend developer";
 
 
 function changeRole(roles) {
-    let roleIndex = 0;
+    
     let charIndex = 0;
 
     function type() {
-        if (roleIndex < roles.length) {
-            if (charIndex < roles[roleIndex].length) {
-                typingText.textContent += roles[roleIndex][charIndex];
+        
+            if (charIndex < roles.length) {
+                typingText.textContent += roles[charIndex];
                 charIndex++;
                 setTimeout(type, 150); 
             } else {
@@ -91,10 +91,7 @@ function changeRole(roles) {
                     erase();
                 }, 1000);
             }
-        } else {
-            roleIndex = 0;
-            setTimeout(type, 1000);
-        }
+        
     }
 
     function erase() {
@@ -103,12 +100,9 @@ function changeRole(roles) {
             charIndex--;
             setTimeout(erase, 100);
         } else {
-            roleIndex++;
+            
             setTimeout(type, 500);
         }
     }
     type();
 }
-
-
-changeRole(roles);
